@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Made Dicoding Cloud</string>
+    <string name="panjang">Panjang</string>
+    <string name="lebar">Lebar</string>
+    <string name="tinggi">TInggi</string>
+    <string name="hitung">Hitung</string>
+    <string name="hasil">Hasil</string>
 </resources>
