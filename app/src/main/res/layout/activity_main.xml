@@ -17,5 +17,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:text="@string/move_activity"/>
+
+    <Button
+        android:id="@+id/btn_pindahWithData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:text="@string/move_with_data" />
     
 </LinearLayout>
