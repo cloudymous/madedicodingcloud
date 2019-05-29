@@ -1,6 +1,7 @@
 package com.example.madedicodingcloud;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,6 +11,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Button btnPindahActivity;
     Button btnPindahWithData;
+    Button btnDialPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnPindahWithData = findViewById(R.id.btn_pindahWithData);
         btnPindahWithData.setOnClickListener(this);
+
+        btnDialPhone = findViewById(R.id.btn_dial_number);
+        btnDialPhone.setOnClickListener(this);
 
     }
 
@@ -36,6 +41,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 pindahWithData.putExtra(PindahWithData.EXTRA_NAME, "Dicoding Academy Boy");
                 pindahWithData.putExtra(PindahWithData.EXTRA_AGE, 5);
                 startActivity(pindahWithData);
+                break;
+            case R.id.btn_dial_number:
+                String phoneNumber = "081210841382";
+                Intent dialPhone = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
+                startActivity(dialPhone);
                 break;
         }
     }
