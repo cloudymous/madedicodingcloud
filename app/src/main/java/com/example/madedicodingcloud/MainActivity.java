@@ -32,6 +32,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(pindahIntent);
                 break;
             case R.id.btn_pindahWithData:
+                Intent pindahWithData = new Intent(MainActivity.this, PindahWithData.class);
+                pindahWithData.putExtra(PindahWithData.EXTRA_NAME, "Dicoding Academy Boy");
+                pindahWithData.putExtra(PindahWithData.EXTRA_AGE, 5);
+                startActivity(pindahWithData);
                 break;
         }
     }
