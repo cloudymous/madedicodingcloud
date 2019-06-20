@@ -2,7 +2,7 @@ package com.example.madedicodingcloud;
 
 public class President {
 
-    private String name, remaks, photo;
+    private String name, remarks, photo;
 
     public String getName() {
         return name;
@@ -12,12 +12,12 @@ public class President {
         this.name = name;
     }
 
-    public String getRemaks() {
-        return remaks;
+    public String getRemarks() {
+        return remarks;
     }
 
-    public void setRemaks(String remaks) {
-        this.remaks = remaks;
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
 
     public String getPhoto() {
