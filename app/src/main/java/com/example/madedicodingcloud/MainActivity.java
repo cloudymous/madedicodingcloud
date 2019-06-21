@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView rvCategory;
     private ArrayList<President> list = new ArrayList<>();
+    private String title = "Mode List";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,12 @@ public class MainActivity extends AppCompatActivity {
         list.addAll(PresidentData.getListData());
         showRecyclerList();
 
+    }
+
+    private void setActionBarTitle(String title) {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
+        }
     }
 
     private void showRecyclerList() {
@@ -59,14 +66,17 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_list:
+                title = "Mode List";
                 showRecyclerList();
                 break;
 
             case R.id.action_grid:
+                title = "Mode Grid";
                 showRecyclerGrid();
                 break;
 
             case R.id.action_cardview:
+                title = "Mode Card View";
                 showRecyclerGrid();
                 break;
         }
