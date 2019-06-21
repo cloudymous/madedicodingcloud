@@ -12,7 +12,7 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/action_cardview"
-        android:title="@string/with_cardview"
+        android:title="@string/cardview"
         app:showAsAction="never" />
 
 </menu>
