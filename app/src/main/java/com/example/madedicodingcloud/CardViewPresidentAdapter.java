@@ -20,6 +20,11 @@ public class CardViewPresidentAdapter extends RecyclerView.Adapter<CardViewPresi
 
     private Context context;
     private ArrayList<President> listPresident;
+    private OnItemClickCallback onItemClickCallback;
+
+    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback;
+    }
 
     public CardViewPresidentAdapter(Context context) {
         this.context = context;
@@ -43,7 +48,7 @@ public class CardViewPresidentAdapter extends RecyclerView.Adapter<CardViewPresi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CardViewViewHolder cardViewViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final CardViewViewHolder cardViewViewHolder, int i) {
 
         President p = getListPresident().get(i);
 
@@ -54,6 +59,13 @@ public class CardViewPresidentAdapter extends RecyclerView.Adapter<CardViewPresi
 
         cardViewViewHolder.tvName.setText(p.getName());
         cardViewViewHolder.tvRemarks.setText(p.getRemarks());
+
+        cardViewViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickCallback.onItemClicked(listPresident.get(cardViewViewHolder.getAdapterPosition()));
+            }
+        });
 
         cardViewViewHolder.btnFavorite.setOnClickListener(new CustomOnItemClickListener(i, new CustomOnItemClickListener.OnItemClickCallback() {
             @Override
@@ -92,5 +104,9 @@ public class CardViewPresidentAdapter extends RecyclerView.Adapter<CardViewPresi
             btnShare = itemView.findViewById(R.id.btn_set_share);
         }
 
+    }
+
+    public interface OnItemClickCallback {
+        void onItemClicked(President data);
     }
 }

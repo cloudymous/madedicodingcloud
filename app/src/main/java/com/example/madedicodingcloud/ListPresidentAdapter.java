@@ -18,6 +18,11 @@ public class ListPresidentAdapter extends RecyclerView.Adapter<ListPresidentAdap
 
     private Context context;
     private ArrayList<President> listPresident;
+    private OnItemClickCallback onItemClickCallback;
+
+    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback;
+    }
 
     public ListPresidentAdapter(Context context) {
         this.context = context;
@@ -40,9 +45,16 @@ public class ListPresidentAdapter extends RecyclerView.Adapter<ListPresidentAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CategoryViewHolder categoryViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final CategoryViewHolder categoryViewHolder, int i) {
         categoryViewHolder.tvName.setText(getListPresident().get(i).getName());
         categoryViewHolder.tvRemarks.setText(getListPresident().get(i).getRemarks());
+
+        categoryViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickCallback.onItemClicked(listPresident.get(categoryViewHolder.getAdapterPosition()));
+            }
+        });
 
         Glide.with(context)
                 .load(getListPresident().get(i).getPhoto())
@@ -56,13 +68,17 @@ public class ListPresidentAdapter extends RecyclerView.Adapter<ListPresidentAdap
         return getListPresident().size();
     }
 
+    public interface OnItemClickCallback {
+        void onItemClicked(President data);
+    }
+
     class CategoryViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvName;
         TextView tvRemarks;
         ImageView imgPhoto;
 
-        CategoryViewHolder(@NonNull View itemView) {
+        CategoryViewHolder(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_item_name);
             tvRemarks = itemView.findViewById(R.id.tv_item_remarks);

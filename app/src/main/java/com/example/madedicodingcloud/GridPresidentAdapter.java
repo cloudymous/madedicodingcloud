@@ -17,6 +17,11 @@ public class GridPresidentAdapter extends RecyclerView.Adapter<GridPresidentAdap
 
     private Context context;
     private ArrayList<President> listPresident;
+    private OnItemClickCallback onItemClickCallback;
+
+    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback;
+    }
 
     public GridPresidentAdapter(Context context) {
         this.context = context;
@@ -40,11 +45,19 @@ public class GridPresidentAdapter extends RecyclerView.Adapter<GridPresidentAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GridViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final GridViewHolder gridViewHolder, int position) {
+
+        gridViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickCallback.onItemClicked(listPresident.get(gridViewHolder.getAdapterPosition()));
+            }
+        });
+
         Glide.with(context)
                 .load(getListPresident().get(position).getPhoto())
                 .apply(new RequestOptions().override(350, 350))
-                .into(holder.imgPhoto);
+                .into(gridViewHolder.imgPhoto);
     }
 
     @Override
@@ -61,4 +74,9 @@ public class GridPresidentAdapter extends RecyclerView.Adapter<GridPresidentAdap
             imgPhoto = view.findViewById(R.id.img_item_photo);
         }
     }
+
+    public interface OnItemClickCallback {
+        void onItemClicked(President data);
+    }
+
 }

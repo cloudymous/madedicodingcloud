@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -35,11 +36,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void showSelectedPresident(President president) {
+        Toast.makeText(this, "Kamu memilih " + president.getName(), Toast.LENGTH_SHORT).show();
+
+    }
+
     private void showRecyclerList() {
         rvCategory.setLayoutManager(new LinearLayoutManager(this));
         ListPresidentAdapter listPresidentAdapter = new ListPresidentAdapter(this);
         listPresidentAdapter.setListPresident(list);
         rvCategory.setAdapter(listPresidentAdapter);
+
+        listPresidentAdapter.setOnItemClickCallback(new ListPresidentAdapter.OnItemClickCallback() {
+            @Override
+            public void onItemClicked(President data) {
+                showSelectedPresident(data);
+            }
+        });
+
     }
 
     private void showRecyclerGrid() {
@@ -47,6 +61,13 @@ public class MainActivity extends AppCompatActivity {
         GridPresidentAdapter gridPresidentAdapter = new GridPresidentAdapter(this);
         gridPresidentAdapter.setListPresident(list);
         rvCategory.setAdapter(gridPresidentAdapter);
+
+        gridPresidentAdapter.setOnItemClickCallback(new GridPresidentAdapter.OnItemClickCallback() {
+            @Override
+            public void onItemClicked(President data) {
+                showSelectedPresident(data);
+            }
+        });
     }
 
     private void showRecycledCardView() {
@@ -54,6 +75,13 @@ public class MainActivity extends AppCompatActivity {
         CardViewPresidentAdapter cardViewPresidentAdapter = new CardViewPresidentAdapter(this);
         cardViewPresidentAdapter.setListPresident(list);
         rvCategory.setAdapter(cardViewPresidentAdapter);
+
+        cardViewPresidentAdapter.setOnItemClickCallback(new CardViewPresidentAdapter.OnItemClickCallback() {
+            @Override
+            public void onItemClicked(President data) {
+                showSelectedPresident(data);
+            }
+        });
     }
 
     @Override
