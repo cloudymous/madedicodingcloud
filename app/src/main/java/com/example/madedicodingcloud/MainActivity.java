@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.action_cardview:
                 title = "Mode Card View";
-                showRecyclerGrid();
+                showRecycledCardView();
                 break;
         }
         return super.onOptionsItemSelected(item);
